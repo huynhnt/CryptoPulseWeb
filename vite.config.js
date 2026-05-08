@@ -9,4 +9,10 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  server: {
+    allowedHosts: ["huylio.com"]
+  },
+  preview: {
+    allowedHosts: ["huylio.com"]
+  }
 })
