@@ -464,7 +464,7 @@ const Home = () => {
                   <CardContent className="p-0">
                     <AssetTable
                       category={category}
-                      coins={category === "all" ? coin.coinList : coin.top50}
+                      coins={category === "all" ? coin.coinList : category === "top50" ? coin.top50 : coin.trading}
                     />
                     {category === "all" && (
                       <Pagination className="border-t py-3">

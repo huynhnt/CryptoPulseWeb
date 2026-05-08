@@ -17,6 +17,9 @@ import {
   SEARCH_COIN_REQUEST,
   FETCH_TOP_50_COINS_REQUEST,
   FETCH_TOP_50_COINS_FAILURE,
+  FETCH_TRADING_COINS_REQUEST,
+  FETCH_TRADING_COINS_SUCCESS,
+  FETCH_TRADING_COINS_FAILURE,
 } from "./ActionTypes";
 
 const initialState = {
@@ -26,6 +29,7 @@ const initialState = {
   marketChart: { data: [], loading: false },
   coinById: null,
   coinDetails: null,
+  trading: [],
   loading: false,
   error: null,
 };
@@ -37,6 +41,7 @@ const coinReducer = (state = initialState, action) => {
     case FETCH_COIN_DETAILS_REQUEST:
     case SEARCH_COIN_REQUEST:
     case FETCH_TOP_50_COINS_REQUEST:
+    case FETCH_TRADING_COINS_REQUEST:
       return { ...state, loading: true, error: null };
 
     case FETCH_MARKET_CHART_REQUEST:
@@ -58,6 +63,22 @@ const coinReducer = (state = initialState, action) => {
       return {
         ...state,
         top50: action.payload,
+        loading: false,
+        error: null,
+      };
+    case FETCH_TRADING_COINS_SUCCESS:
+      return {
+        ...state,
+        trading: action.payload.coins.map((c) => ({
+          id: c.item.id,
+          name: c.item.name,
+          symbol: c.item.symbol,
+          image: c.item.large || c.item.thumb,
+          current_price: c.item.data?.price || 0,
+          total_volume: c.item.data?.total_volume || 0,
+          market_cap: c.item.data?.market_cap || 0,
+          market_cap_change_percentage_24h: c.item.data?.price_change_percentage_24h?.usd || 0,
+        })),
         loading: false,
         error: null,
       };
@@ -100,6 +121,7 @@ const coinReducer = (state = initialState, action) => {
     case FETCH_COIN_BY_ID_FAILURE:
     case FETCH_COIN_DETAILS_FAILURE:
     case FETCH_TOP_50_COINS_FAILURE:
+    case FETCH_TRADING_COINS_FAILURE:
       return { ...state, loading: false, error: action.payload };
     default:
       return state;

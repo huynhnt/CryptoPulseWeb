@@ -57,7 +57,7 @@ const Watchlist = () => {
                   onClick={() => navigate(`/market/${item.id}`)}
                   className="font-medium flex items-center gap-2 cursor-pointer"
                 >
-                  <Avatar className="-z-50">
+                  <Avatar>
                     <AvatarImage src={item.image} alt={item.symbol} />
                   </Avatar>
                   <span> {item.name}</span>
