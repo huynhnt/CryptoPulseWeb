@@ -77,6 +77,19 @@ const StockChart = ({ coinId }) => {
       //   min: new Date('01 Dec 2023').getTime(),
       tickAmount: 6,
     },
+    yaxis: {
+      labels: {
+        style: {
+          colors: "#fff",
+        },
+        formatter: function (value) {
+          return Intl.NumberFormat("en-US", {
+            notation: "compact",
+            compactDisplay: "short",
+          }).format(value);
+        },
+      },
+    },
     colors: ["#758AA2"], // Line color
     markers: {
       colors: ["#fff"], // Dot color

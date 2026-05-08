@@ -63,8 +63,8 @@ const Watchlist = () => {
                   <span> {item.name}</span>
                 </TableCell>
                 <TableCell>{item.symbol.toUpperCase()}</TableCell>
-                <TableCell>{item.total_volume}</TableCell>
-                <TableCell>{item.market_cap}</TableCell>
+                <TableCell>{Intl.NumberFormat("en-US").format(item.total_volume)}</TableCell>
+                <TableCell>{Intl.NumberFormat("en-US").format(item.market_cap)}</TableCell>
                 <TableCell
                   className={`${
                     item.market_cap_change_percentage_24h < 0
@@ -74,7 +74,7 @@ const Watchlist = () => {
                 >
                   {item.market_cap_change_percentage_24h}%
                 </TableCell>
-                <TableCell>{item.current_price}</TableCell>
+                <TableCell>${item.current_price}</TableCell>
 
                 <TableCell className="text-right">
                   <Button onClick={()=>handleAddToWatchlist(item.id)} className="h-10 w-10" variant="outline" size="icon">
