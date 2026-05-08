@@ -1,3 +1,4 @@
+import { parseCompactCurrency } from "../../Util/formatNumber";
 import {
   FETCH_COIN_LIST_REQUEST,
   FETCH_COIN_LIST_SUCCESS,
@@ -75,8 +76,8 @@ const coinReducer = (state = initialState, action) => {
           symbol: c.item.symbol,
           image: c.item.large || c.item.thumb,
           current_price: c.item.data?.price || 0,
-          total_volume: c.item.data?.total_volume || 0,
-          market_cap: c.item.data?.market_cap || 0,
+          total_volume: parseCompactCurrency(c.item.data?.total_volume),
+          market_cap: parseCompactCurrency(c.item.data?.market_cap),
           market_cap_change_percentage_24h: c.item.data?.price_change_percentage_24h?.usd || 0,
         })),
         loading: false,

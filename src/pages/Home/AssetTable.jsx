@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/table";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { formatCompactCurrency, formatPercent, formatPrice } from "../../Util/formatNumber";
 
 export const invoices = [
   {
@@ -342,17 +343,17 @@ export function AssetTable({ coins, category }) {
                 <span> {item.name}</span>
               </TableCell>
               <TableCell>{item.symbol.toUpperCase()}</TableCell>
-              <TableCell>{Intl.NumberFormat("en-US").format(item.total_volume)}</TableCell>
-              <TableCell>{Intl.NumberFormat("en-US").format(item.market_cap)}</TableCell>
+              <TableCell>{formatCompactCurrency(item.total_volume)}</TableCell>
+              <TableCell>{formatCompactCurrency(item.market_cap)}</TableCell>
               <TableCell
                 className={`${item.market_cap_change_percentage_24h < 0
                     ? "text-red-600"
                     : "text-green-600"
                   }`}
               >
-                {item.market_cap_change_percentage_24h}%
+                {formatPercent(item.market_cap_change_percentage_24h)}
               </TableCell>
-              <TableCell className="text-right">${item.current_price}</TableCell>
+              <TableCell className="text-right">{formatPrice(item.current_price)}</TableCell>
 
               {/* market_cap_change_percentage_24h */}
             </TableRow>

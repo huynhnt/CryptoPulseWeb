@@ -15,6 +15,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { BookmarkFilledIcon } from "@radix-ui/react-icons";
+import { formatCompactCurrency, formatPercent, formatPrice } from "../../Util/formatNumber";
 
 const Watchlist = () => {
   const dispatch = useDispatch();
@@ -63,8 +64,8 @@ const Watchlist = () => {
                   <span> {item.name}</span>
                 </TableCell>
                 <TableCell>{item.symbol.toUpperCase()}</TableCell>
-                <TableCell>{Intl.NumberFormat("en-US").format(item.total_volume)}</TableCell>
-                <TableCell>{Intl.NumberFormat("en-US").format(item.market_cap)}</TableCell>
+                <TableCell>{formatCompactCurrency(item.total_volume)}</TableCell>
+                <TableCell>{formatCompactCurrency(item.market_cap)}</TableCell>
                 <TableCell
                   className={`${
                     item.market_cap_change_percentage_24h < 0
@@ -72,9 +73,9 @@ const Watchlist = () => {
                       : "text-green-600"
                   }`}
                 >
-                  {item.market_cap_change_percentage_24h}%
+                  {formatPercent(item.market_cap_change_percentage_24h)}
                 </TableCell>
-                <TableCell>${item.current_price}</TableCell>
+                <TableCell>{formatPrice(item.current_price)}</TableCell>
 
                 <TableCell className="text-right">
                   <Button onClick={()=>handleAddToWatchlist(item.id)} className="h-10 w-10" variant="outline" size="icon">

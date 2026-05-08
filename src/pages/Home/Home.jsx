@@ -18,9 +18,9 @@ import {
   PaginationLink,
   PaginationNext,
 } from "@/components/ui/pagination";
-import { 
-  MessageCircle, 
-  ChevronLeft, 
+import {
+  MessageCircle,
+  ChevronLeft,
   X,
   Wallet,
   ArrowUpRight,
@@ -55,24 +55,24 @@ import { motion } from "framer-motion";
 
 const ParallaxBackground = ({ children }) => {
   const [scrollY, setScrollY] = useState(0);
-  
+
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
     };
-    
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <div className="relative overflow-hidden">
-      <div 
-        className="absolute inset-0 opacity-10 pointer-events-none" 
-        style={{ 
+      <div
+        className="absolute inset-0 opacity-10 pointer-events-none"
+        style={{
           backgroundImage: "url('/api/placeholder/1200/600')",
           backgroundSize: "cover",
-          transform: `translateY(${scrollY * 0.1}px)` 
+          transform: `translateY(${scrollY * 0.1}px)`
         }}
       />
       {children}
@@ -82,7 +82,7 @@ const ParallaxBackground = ({ children }) => {
 
 const HeroSection = () => {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
@@ -127,28 +127,6 @@ const HeroSection = () => {
                 <StockChart coinId={"bitcoin"} />
               </div>
             </div>
-            <div className="absolute -bottom-6 -left-6 bg-background p-4 rounded-xl border shadow-lg">
-              <div className="flex items-center gap-3">
-                <Avatar>
-                  <AvatarImage src="/api/placeholder/40/40" />
-                </Avatar>
-                <div>
-                  <p className="font-bold">Bitcoin</p>
-                  <p className="text-sm text-green-500">+5.23%</p>
-                </div>
-              </div>
-            </div>
-            <div className="absolute -top-6 -right-6 bg-background p-4 rounded-xl border shadow-lg">
-              <div className="flex items-center gap-3">
-                <div>
-                  <p className="font-bold text-right">Ethereum</p>
-                  <p className="text-sm text-green-500 text-right">+3.17%</p>
-                </div>
-                <Avatar>
-                  <AvatarImage src="/api/placeholder/40/40" />
-                </Avatar>
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>
@@ -159,7 +137,7 @@ const HeroSection = () => {
 const StatsSection = () => {
   return (
     <div className="py-12 px-6 md:px-10 lg:px-16 bg-secondary/20">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -216,7 +194,7 @@ const StatsSection = () => {
 const FeaturesSection = () => {
   return (
     <div className="py-24 px-6 md:px-10 lg:px-16">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -235,7 +213,7 @@ const FeaturesSection = () => {
             from real-time tracking to AI-powered insights.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <motion.div
             whileHover={{ y: -10, transition: { duration: 0.3 } }}
@@ -258,7 +236,7 @@ const FeaturesSection = () => {
               </CardContent>
             </Card>
           </motion.div>
-          
+
           <motion.div
             whileHover={{ y: -10, transition: { duration: 0.3 } }}
             className="group"
@@ -280,7 +258,7 @@ const FeaturesSection = () => {
               </CardContent>
             </Card>
           </motion.div>
-          
+
           <motion.div
             whileHover={{ y: -10, transition: { duration: 0.3 } }}
             className="group"
@@ -311,7 +289,7 @@ const FeaturesSection = () => {
 const CtaSection = () => {
   return (
     <div className="py-24 px-6 md:px-10 lg:px-16 bg-secondary/20">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -410,13 +388,13 @@ const Home = () => {
       <div className="min-h-screen">
         {/* Hero Section */}
         <HeroSection />
-        
+
         {/* Stats Section */}
         <StatsSection />
-        
+
         {/* Dashboard Section */}
         <div className="py-12 px-6 md:px-10 lg:px-16">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -433,7 +411,7 @@ const Home = () => {
                   <TabsTrigger value="chart">Chart</TabsTrigger>
                 </TabsList>
               </div>
-              
+
               <TabsContent value="dashboard" className="space-y-6">
                 <Card>
                   <CardHeader className="px-6">
@@ -528,7 +506,7 @@ const Home = () => {
                   </CardContent>
                 </Card>
               </TabsContent>
-              
+
               <TabsContent value="chart">
                 <Card>
                   <CardHeader className="flex flex-row items-center">
@@ -547,11 +525,10 @@ const Home = () => {
                             ${coin.coinDetails?.market_data?.current_price?.usd}
                           </p>
                           <p
-                            className={`${
-                              coin.coinDetails?.market_data?.market_cap_change_24h < 0
-                                ? "text-red-600"
-                                : "text-green-600"
-                            }`}
+                            className={`${coin.coinDetails?.market_data?.market_cap_change_24h < 0
+                              ? "text-red-600"
+                              : "text-green-600"
+                              }`}
                           >
                             <span>
                               {coin.coinDetails?.market_data?.market_cap_change_24h}
@@ -577,13 +554,13 @@ const Home = () => {
             </Tabs>
           </motion.div>
         </div>
-        
+
         {/* Features Section */}
         <FeaturesSection />
-        
+
         {/* CTA Section */}
         <CtaSection />
-        
+
         {/* Chat Bot */}
         <div className="fixed bottom-5 right-5 z-40 flex flex-col justify-end items-end gap-2">
           {isBotRelease && (
@@ -616,9 +593,8 @@ const Home = () => {
                     <div
                       ref={index === chatBot.messages.length - 1 ? chatContainerRef : null}
                       key={index}
-                      className={`${
-                        item.role === "user" ? "self-end" : "self-start"
-                      } pb-5 w-auto`}
+                      className={`${item.role === "user" ? "self-end" : "self-start"
+                        } pb-5 w-auto`}
                     >
                       {item.role === "user" ? (
                         <div className="px-5 py-2 rounded-full bg-primary/20 w-auto">
@@ -655,9 +631,9 @@ const Home = () => {
                   value={inputValue}
                   onKeyPress={handleKeyPress}
                 />
-                <Button 
-                  size="icon" 
-                  variant="ghost" 
+                <Button
+                  size="icon"
+                  variant="ghost"
                   onClick={() => {
                     if (inputValue.trim()) {
                       dispatch(
@@ -675,13 +651,13 @@ const Home = () => {
               </div>
             </motion.div>
           )}
-          
+
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button 
-              onClick={handleBotRelease} 
+            <Button
+              onClick={handleBotRelease}
               className="h-14 px-6 gap-2 items-center shadow-lg"
             >
               <MessageCircle size={20} />
