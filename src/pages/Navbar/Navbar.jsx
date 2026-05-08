@@ -95,7 +95,6 @@ const Navbar = () => {
   // Quick nav items
   const quickNavItems = [
     { name: "Portfolio", icon: <DashboardIcon />, path: "/portfolio" },
-    { name: "Markets", icon: <TrendingUp size={16} />, path: "/markets" },
     { name: "Watchlist", icon: <BookmarkIcon />, path: "/watchlist" },
     { name: "Wallet", icon: <WalletIcon size={16} />, path: "/wallet" },
   ];
